@@ -1,0 +1,13 @@
+# To execute all test cases
+npx playwright test
+
+# To execute all test cases in headed mode
+npx playwright test --headed
+
+# To execute all test cases from perticular file in headed mode
+npx playwright test <filepath> --headed
+e.g: npx playwright test D:/playwright1-jan-2026/tests/shriniwas/02-browser-navigation.spec.ts --headed
+e.g: npx playwright test /tests/shriniwas/02-browser-navigation.spec.ts --headed
+
+# To view the report
+npx playwright show-report
