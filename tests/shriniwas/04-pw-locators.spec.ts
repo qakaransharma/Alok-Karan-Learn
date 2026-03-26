@@ -58,12 +58,44 @@ test("Verify getByTitle", async ({ page }) => {
   await expect(loc).toBeVisible();
 });
 
-test("Verify getByTestId", async ({ page }) => {
+test("Verify getByTestId 1", async ({ page }) => {
   await page.goto("https://utkarsh-react-testing-library-demo.netlify.app/");
 
+  // <input id="firstName" name="first_name" />
   // data-testid=""
   // data-test-id=""
   const loc = page.getByTestId("task-container");
 
   await expect(loc).toBeVisible();
+});
+
+test("Verify getByTestId 2", async ({ page }) => {
+  await page.goto("http://127.0.0.1:5500/tests/resource/sample.html");
+
+  await page.waitForTimeout(2000);
+
+  const txtUserName = page.getByTestId("input-username");
+
+  await txtUserName.fill("Shriniwas");
+
+  await page.waitForTimeout(2000);
+
+  const chkTesting = page.getByTestId("checkbox-testing");
+  await chkTesting.click();
+
+  await page.waitForTimeout(2000);
+});
+
+test("Verify getByRole", async ({ page }) => {
+  await page.goto("http://127.0.0.1:5500/tests/resource/sample.html");
+
+  await page.waitForTimeout(2000);
+
+  const txtUserName = page.getByRole("textbox", { name: "username" });
+
+  await txtUserName.fill("Shri");
+
+  await page.waitForTimeout(2000);
+
+  await page.getByRole("checkbox", { name: /submit/i }).click();
 });

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Test Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+        }
+
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 14px;
+            min-height: 100px;
+            font-family: inherit;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        button {
+            flex: 1;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-reset {
+            background: #f0f0f0;
+            color: #333;
+            border: 2px solid #ddd;
+        }
+
+        .btn-reset:hover {
+            background: #e0e0e0;
+        }
+
+        .message {
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+            animation: slideIn 0.3s ease-in-out;
+        }
+
+        .message.show {
+            display: block;
+        }
+
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .checkbox-group {
+            margin-bottom: 20px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .checkbox-item label {
+            margin-bottom: 0;
+            font-weight: 400;
+            cursor: pointer;
+        }
+
+        .link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 data-testid="page-title">Welcome Form</h1>
+        <p class="subtitle" data-testid="subtitle">Please fill out the form below</p>
+
+        <div class="message" id="message" data-testid="message-alert"></div>
+
+        <form id="testForm" data-testid="main-form">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username"
+                    data-test-shri="input-username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" data-testid="input-email"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password"
+                    data-testid="input-password" required>
+            </div>
+
+            <div class="form-group">
+                <label for="country">Country</label>
+                <select id="country" name="country" data-testid="select-country">
+                    <option value="">Select a country</option>
+                    <option value="us">United States</option>
+                    <option value="uk">United Kingdom</option>
+                    <option value="ca">Canada</option>
+                    <option value="au">Australia</option>
+                    <option value="in">India</option>
+                </select>
+            </div>
+
+            <div class="checkbox-group">
+                <p style="font-weight: 600; margin-bottom: 10px;">Interests</p>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="testing" name="interests" value="testing"
+                        data-test-shri="checkbox-testing">
+                    <label for="testing">Testing</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="automation" name="interests" value="automation"
+                        data-testid="checkbox-automation">
+                    <label for="automation">Automation</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="development" name="interests" value="development"
+                        data-testid="checkbox-development">
+                    <label for="development">Development</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="comments">Comments</label>
+                <textarea id="comments" name="comments" placeholder="Enter any comments..."
+                    data-testid="textarea-comments"></textarea>
+            </div>
+
+            <div class="button-group">
+                <button type="submit" class="btn-submit" data-testid="button-submit">
+                    Submit
+                </button>
+                <button type="reset" class="btn-reset" data-testid="button-reset">
+                    Reset
+                </button>
+            </div>
+        </form>
+
+        <p style="text-align: center; margin-top: 20px; color: #666; font-size: 13px;">
+            Have an account?
+            <span class="link" data-testid="login-link">Login here</span>
+        </p>
+    </div>
+
+    <script>
+        const form = document.getElementById('testForm');
+        const messageAlert = document.getElementById('message');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            if (username.trim() === '') {
+                showMessage('Please enter a username', 'error');
+                return;
+            }
+
+            messageAlert.textContent = `Welcome, ${username}! Form submitted successfully.`;
+            showMessage('Form submitted successfully!', 'success');
+
+            // Reset form after 2 seconds
+            setTimeout(() => {
+                form.reset();
+                messageAlert.classList.remove('show');
+            }, 2000);
+        });
+
+        function showMessage(message, type) {
+            messageAlert.textContent = message;
+            messageAlert.classList.add('show', type);
+
+            setTimeout(() => {
+                messageAlert.classList.remove('show', type);
+            }, 4000);
+        }
+
+        // Login link handler
+        document.querySelector('[data-testid="login-link"]').addEventListener('click', function () {
+            showMessage('Login functionality not implemented', 'error');
+        });
+    </script>
+</body>
+
+</html>
