@@ -98,15 +98,50 @@ test("Verify relative xpath", async ({ page }) => {
   </div>
 </div>
 
-Child: //div[@class="header-menu"]/child::ul[@class="top-menu"]
-Parent: //div[@id="mob-menu-button"]/parent::div
+1. Child: //div[@class="header-menu"]/child::ul[@class="top-menu"]
+2. Parent: //div[@id="mob-menu-button"]/parent::div
+//li[@id="topcartlink"]/parent::ul
 //div[@id="mob-menu-button"]/../../.. 
+//li[@id="topcartlink"]/parent::ul/parent::div/parent::div
 Use /.. to go one step back from the current element
 
+3. following (after current node)
+//div[@class="header-links-wrapper"]/following::form
+
+4. following-sibling
+//div[@class="header-links"]/ul/li/following-sibling::li
+
+5. preceding:
+//div[@class="header-selectors-wrapper"]/preceding::div
+
+6. preceding-sibling (befor current node)
+
+7. ancestor: parent : It will not consister the current tag
+//div[@id="testId"]/ancestor::div
+
+<div>
+  <div> </div>
+  <div>
+    <div>
+      <div> 1 </div>
+      <div> 2 </div>
+      <div id="testId"> 3 </div>
+    </div>
+  </div>
+</div>
 
 
+8. ancestor-or-self: parent : It will consister the current tag
+//div[@class="header-selectors-wrapper"]/ancestor-or-self::div
+
+9. descendant 
+//div[@class="master-wrapper-page"]/descendant::div
+
+10. descendant-or-self
+//div[@class="master-wrapper-page"]/descendant-or-self::div
+
+Make my trip example to find the :
+//p[text()='About the Site']/following-sibling::ul[1]/li/a
 */
-
-
 
 
