@@ -7,7 +7,7 @@ npx playwright test
 # To execute all test cases in headed mode
 npx playwright test --headed
 
-# To execute all test cases from perticular file in headed mode
+# To execute all test cases from particular file in headed mode
 npx playwright test <filepath> --headed
 e.g: npx playwright test D:/playwright1-jan-2026/tests/shriniwas/02-browser-navigation.spec.ts --headed
 e.g: npx playwright test /tests/shriniwas/02-browser-navigation.spec.ts --headed
@@ -17,3 +17,7 @@ npx playwright show-report
 
 # To execute particular test case from a file
 npx playwright test tests/shriniwas/03-login-form.spec.ts --grep "verify login 1"
+
+# To execute test file on particular browser
+npx playwright test --project=chromium
+
