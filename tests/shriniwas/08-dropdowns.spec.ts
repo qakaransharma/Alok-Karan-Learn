@@ -1,6 +1,6 @@
 import { test, expect, Locator } from "@playwright/test";
 
-test("Dropdown Actions", async ({ page }) => {
+test.skip("Dropdown Actions", async ({ page }) => {
   await page.goto("https://testautomationpractice.blogspot.com/");
   const ddlCountry = await page.locator("#country");
 
@@ -32,7 +32,7 @@ test("Dropdown Actions", async ({ page }) => {
   }
 });
 
-test("Multiple Selection Dropdown Actions", async ({ page }) => {
+test.skip("Multiple Selection Dropdown Actions", async ({ page }) => {
   await page.goto("https://testautomationpractice.blogspot.com/");
   const ddlColors = await page.locator("#colors");
   // await ddlColors.selectOption(["Red", "Blue", "Green"]); // Visible text
@@ -50,10 +50,9 @@ test("Multiple Selection Dropdown Actions", async ({ page }) => {
   // await page.locator("#colors > option:nth-child(1)").click();
 });
 
-test("Verify Duplicate Values", async ({ page }) => {
+test.skip("Verify Duplicate Values", async ({ page }) => {
   await page.goto("https://testautomationpractice.blogspot.com/");
   const ddlColors = await page.locator("#colors > option");
-
   const textOptions = await ddlColors.allTextContents();
   console.log(textOptions);
 
@@ -62,8 +61,8 @@ test("Verify Duplicate Values", async ({ page }) => {
   );
   console.log(textOptionsWithoutSpaces);
 
-  const withoutDuplicates = new Set<string>();
-  const duplicatesArray: string[] = [];
+  const withoutDuplicates = new Set<string>(); // Set does not have duplicates
+  const duplicatesArray: string[] = []; // Blank array
 
   // Set-> withoutDuplicates : {Red, Blue, Green, Yellow, White}
   // duplicatesArray -> [Red, Green]
@@ -80,4 +79,74 @@ test("Verify Duplicate Values", async ({ page }) => {
 
   expect(duplicatesArray.length).toBeGreaterThan(0);
   // expect(duplicatesArray.length).not.toBeGreaterThan(0);
+});
+
+test.skip("Verify if the list is sorted or not - with sorted list", async ({
+  page,
+}) => {
+  await page.goto("https://testautomationpractice.blogspot.com/");
+
+  const textOptions = page.locator("#animals > option");
+
+  const textOptionsWithSpaces: string[] = await textOptions.allTextContents();
+
+  const textOptionsWithoutSpaces = textOptionsWithSpaces.map((optionText) =>
+    optionText.trim(),
+  );
+
+  // console.log(textOptionsWithoutSpaces);
+
+  const actualList: string[] = textOptionsWithoutSpaces;
+  const sortedList: string[] = textOptionsWithoutSpaces.sort();
+
+  console.log("Actual List: ", actualList);
+  console.log("Sorted List: ", sortedList);
+
+  expect(actualList).toEqual(sortedList);
+});
+
+test.skip("Verify if the list is sorted or not - with unsorted list", async ({
+  page,
+}) => {
+  await page.goto("https://testautomationpractice.blogspot.com/");
+
+  const textOptions = page.locator("#colors > option");
+
+  const textOptionsWithSpaces: string[] = await textOptions.allTextContents();
+
+  const textOptionsWithoutSpaces = textOptionsWithSpaces.map((optionText) =>
+    optionText.trim(),
+  );
+
+  const actualList: string[] = [...textOptionsWithoutSpaces];
+  const sortedList: string[] = textOptionsWithoutSpaces.sort(); // it mutaes the original array
+
+  console.log("Actual List: ", actualList);
+  console.log("Sorted List: ", sortedList);
+
+  // If sortedList is not matching with actualList
+  // We can say our list is not sorted
+  expect(actualList).toEqual(sortedList);
+});
+
+test("Handle Auto Suggestion Options", async ({ page }) => {
+  await page.goto("https://www.flipkart.com/");
+
+  const txtSearch = page.locator('input[name="q"]').nth(0);
+  await page.waitForTimeout(3000);
+  await txtSearch.fill("iphone");
+  await page.waitForTimeout(3000);
+
+  const searchResults: Locator = await page.locator("ul > li");
+  const totalResults = await searchResults.count();
+
+  // fetch the text of an element
+  // const textSearchResult: string = await searchResults.nth(2).innerText();
+
+  // console.log(textSearchResult);
+
+  for (let i = 0; i < totalResults; i++) {
+    const textSearchResult = await searchResults.nth(i).innerText();
+    console.log(textSearchResult);
+  }
 });
