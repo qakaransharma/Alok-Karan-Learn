@@ -21,3 +21,22 @@ npx playwright test tests/shriniwas/03-login-form.spec.ts --grep "verify login 1
 # To execute test file on particular browser
 npx playwright test --project=chromium
 
+# To generate the reports using commands
+npx playwright test ./tests/shriniwas/09-reporters.spec.ts --reporter=html
+npx playwright test ./tests/shriniwas/09-reporters.spec.ts --reporter=line
+npx playwright test ./tests/shriniwas/09-reporters.spec.ts --reporter=list
+npx playwright test ./tests/shriniwas/09-reporters.spec.ts --reporter=json
+npx playwright test ./tests/shriniwas/09-reporters.spec.ts --reporter=junit
+npx playwright test ./tests/shriniwas/09-reporters.spec.ts --reporter=allure-playwright
+
+# To generate the allure report based on allure results
+allure generate ./allure-results -o ./allure-report
+
+#To open the generated allure report, use below command
+allure open ./allure-report
+
+# You need to install allure-commandline to generate allure-reports
+npm install -g allure-commandline
+
+# To check the allure version
+allure --version
