@@ -40,3 +40,6 @@ npm install -g allure-commandline
 
 # To check the allure version
 allure --version
+
+# To clean the existing report and generate new
+allure generate ./allure-results -o ./allure-report --clean

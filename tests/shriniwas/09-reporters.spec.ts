@@ -4,6 +4,7 @@ import { test, expect, Locator } from "@playwright/test";
 // >> npm install -D allure-playwright
 // You need to set allure-playwright in playwright.config.ts file
 
+// In order to generate allure report you need to follow below steps
 // You need to install allure-commandline
 // npm install -g allure-commandline
 
@@ -14,7 +15,7 @@ import { test, expect, Locator } from "@playwright/test";
 // You need to set the allure/bin folder path in ENV variable
 
 // To generate the allure report based on the results, use below command
-// >> allure generate ./allure-results -o ./allure-report
+// >> allure generate ./allure-results -o ./allure-report --clean
 // To open the generated allure report, use below command
 // >> allure open ./allure-report
 
