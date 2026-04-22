@@ -13,7 +13,14 @@ import { defineConfig, devices } from "@playwright/test";
  */
 export default defineConfig({
   testDir: "./tests",
-  timeout: 60000,
+
+  // This is timeout for global (All the execution)
+  // globalTimeout: 3_600_000,
+  // This is timeout for test
+  // timeout: 60000,
+  // This is timeout for assertion
+  // expect: { timeout: 30000 },
+
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -25,18 +32,18 @@ export default defineConfig({
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
     // ["html", { open: "always", outputFolder: "shriniwas-html-report" }],
-    // ["html", { open: "always" }],
+    ["html", { open: "always" }],
     // ["line"],
     // ["dot"],
     // ["list"],
     // ["junit", { outputFile: "junit-reporter/junit.xml" }],
     // ["json", { outputFile: "json-reporter/report.json" }],
-    [
-      "allure-playwright",
-      {
-        resultDir: "allure-results",
-      },
-    ],
+    // [
+    //   "allure-playwright",
+    //   {
+    //     resultDir: "allure-results",
+    //   },
+    // ],
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
@@ -48,6 +55,9 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on-first-retry",
+
+    // actionTimeout: 5 * 1000, // 5 sec
+    // navigationTimeout: 30 * 1000, // 30 sec
   },
 
   /* Configure projects for major browsers */

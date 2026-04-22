@@ -3,20 +3,13 @@ import { test, expect, Locator } from "@playwright/test";
 test("Auto Waiting", async ({ page }) => {
   await page.goto("https://www.automationexercise.com/products");
 
-  const txtSearch = page.getByText("Cart");
+  // Auto Retry assertion: default timeout: 5 sec
+  await expect(page).toHaveTitle("Automation Exercise - All Products");
 
-  // Actions - Auto wait works for actions : default timeout : 30 sec
-  await txtSearch.fill("Dress");
-  await txtSearch.click({ force: true }); // It will wait for 30 sec before throwing TimeOutError
+  // Auto Retry Assertion: default timeout: 5 sec
+  await expect(page.locator('//a[text()=" Home"]')).toBeVisible();
 
-  // Assertions - Auto wait works for assertions : default timeout : 5 sec
-  expect(
-    page.locator('//a/img[@src="/static/images/home/logo.png"]'),
-  ).toBeVisible();
-
-  expect(
-    page.locator('//a/img[@src="/static/images/home/logo.png"]'),
-  ).toBeVisible();
-
-  expect(page).toHaveTitle("Automation Exercise - All Products");
+  // Auto Retry Actions: default timeout: 30 sec, if it doesnt find it will throw TimeoutError
+  await page.locator('//a[text()=" Home"]').click();
+  await page.getByPlaceholder("Search Product").fill("Dress");
 });
