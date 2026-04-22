@@ -43,3 +43,21 @@ allure --version
 
 # To clean the existing report and generate new
 allure generate ./allure-results -o ./allure-report --clean
+
+# To open a codegen window
+npx playwright codegen
+# To open a codegen window with file creation
+npx playwright codegen -o <filepath>
+npx playwright codegen --output <filepath>
+# To open a codegen window with lang
+npx playwright codegen --target java
+# To open a codegen window with browser
+npx playwright codegen -b <chromium/firefox/webkit>
+npx playwright codegen --browser <chromium/firefox/webkit>
+#IMP command: To open our script in debugger window
+npx playwright test <filepath> --debug
+
+
+
+
+
