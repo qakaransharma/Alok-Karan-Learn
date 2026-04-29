@@ -57,6 +57,16 @@ npx playwright codegen --browser <chromium/firefox/webkit>
 #IMP command: To open our script in debugger window
 npx playwright test <filepath> --debug
 
+# Run tests using tags
+npx playwright test /tests/shriniwas/25-tags2.spec.ts --grep "@regression"
+
+Works as an AND operator, it will execute the tests which has both the tags
+npx playwright test /tests/shriniwas/25-tags2.spec.ts --grep "(?=.*@sanity)(?=.*@regression)"
+
+Works like a Logical OR  
+npx playwright test tests/shriniwas/25-tags2.spec.ts --grep "@sanity|@regression"
+
+
 
 
 

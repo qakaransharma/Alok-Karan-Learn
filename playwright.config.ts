@@ -13,6 +13,8 @@ import { defineConfig, devices } from "@playwright/test";
  */
 export default defineConfig({
   testDir: "./tests",
+  // grep: /@sanity/,
+  // grepInvert: /@regression/
 
   // This is timeout for global (All the execution)
   // globalTimeout: 3_600_000,
@@ -32,7 +34,7 @@ export default defineConfig({
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
     // ["html", { open: "always", outputFolder: "shriniwas-html-report" }],
-    ["html", { open: "always" }],
+    ["html", { open: "never" }],
     // ["line"],
     // ["dot"],
     // ["list"],
