@@ -10,7 +10,7 @@ test("Verify dropdown", async({page})=> {
 test("Verify dropdown1", async({page})=> {
     await page.goto("https://testautomationpractice.blogspot.com/");
      const ddlCountry = page.locator("#country");
-     await ddlCountry.selectOption("India");
+     await ddlCountry.selectOption("SriLanka");
    
     //await countryDropdown.selectOption({label: "United States"});
 })
