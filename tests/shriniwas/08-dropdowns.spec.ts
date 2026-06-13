@@ -1,6 +1,6 @@
 import { test, expect, Locator } from "@playwright/test";
 
-test.skip("Dropdown Actions", async ({ page }) => {
+test("Dropdown Actions", async ({ page }) => {
   await page.goto("https://testautomationpractice.blogspot.com/");
   const ddlCountry = await page.locator("#country");
 
