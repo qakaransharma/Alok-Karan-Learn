@@ -10,7 +10,7 @@ const leftNavigationBar = await page.locator('#salesNavbar li[data-original-titl
 //await page.locator("#salesNavbar").filter({ hasText: 'Leads' }).click();
 await page.getByRole('button', { name: 'Add' }).click();
 await page.locator('[id="0_13_input_lastName"]').fill("akash 02");
+//finds page locator, performs click. Saves leads resulting from the action
 const saveLeads = await await page.locator("//button[@type='submit']").click();
 await page.waitForTimeout(4000);
-
 });
