@@ -4,5 +4,5 @@ test("Verify dropdown", async({page})=> {
      const ddlCountry = page.locator("#country");
      await ddlCountry.selectOption("United Kingdom");
    
-    //await countryDropdown.selectOption({label: "United States"});
+    await countryDropdown.selectOption({label: "United States"});
 })
